@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Güçlü ve Sakin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-text: #2d3436;
+            --color-accent: #e17055;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--color-text);
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        /* Arka Plan Yaprak Animasyonu */
+        .leaf {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 20px 0px;
+            z-index: 1;
+            pointer-events: none;
+            animation: float 15s infinite linear;
+        }
+        
+        .leaf:nth-child(1) { top: -10%; left: 10%; animation-duration: 12s; background: rgba(255,255,255,0.3); }
+        .leaf:nth-child(2) { top: -10%; left: 40%; animation-duration: 18s; transform: rotate(45deg); }
+        .leaf:nth-child(3) { top: -10%; left: 80%; animation-duration: 15s; background: rgba(255,255,255,0.2); }
+
+        @keyframes float {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        .scroll-container {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
+        }
+
+        section {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            text-align: center;
+            scroll-snap-align: start;
+            position: relative;
+            z-index: 2;
+            transition: background 1s ease;
+        }
+
+        /* Renkli Arka Planlar (Pastel ve Huzurlu) */
+        .bg-1 { background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); } 
+        .bg-2 { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); } 
+        .bg-3 { background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%); } 
+        .bg-4 { background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); } 
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #2d3436;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+            font-style: italic;
+        }
+
+        p {
+            font-size: 1.1rem;
+            max-width: 500px;
+            font-weight: 400;
+            color: #636e72;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease 0.3s;
+        }
+
+        .visible h1, .visible p { opacity: 1; transform: translateY(0); }
+
+        /* Vurgulu Kelimeler */
+        .highlight {
+            color: #d63031;
+            font-weight: 500;
+            background: rgba(255,255,255,0.5);
+            padding: 0 5px;
+            border-radius: 5px;
+        }
+
+        /* Buton */
+        .bloom-btn {
+            margin-top: 30px;
+            padding: 20px 50px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            background: white;
+            color: #e84393;
+            border: 2px solid white;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(232, 67, 147, 0.2);
+            transition: all 0.3s;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .visible .bloom-btn { opacity: 1; transform: scale(1); transition-delay: 0.5s; }
+
+        .bloom-btn:hover {
+            background: #e84393;
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 30px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            opacity: 0.5;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Konfeti Canvas */
+        #petals {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+
+    <div class="scroll-container">
+        
+        <section class="step bg-1">
+            <h1>Derin Bir Nefes Al.</h1>
+            <p>Sakin ol. Panik yapmana, kendini sıkmana hiç gerek yok. Bu bir sınav değil, bu senin <span class="highlight">dinlenme</span> zamanın.</p>
+            <div class="scroll-hint">Rahatla ve Kaydır 🌸</div>
+        </section>
+
+        <section class="step bg-2">
+            <h1>Korkulacak Bir Şey Yok.</h1>
+            <p>O hissettiğin küçük huzursuzluk var ya? O aslında vücudunun "Teşekkür ederim, temizleniyorum" deme şekli. Bırak geçsin, <span class="highlight">gülümse</span> ve izle.</p>
+        </section>
+
+        <section class="step bg-3">
+            <h1>Kendine Yüklenme.</h1>
+            <p>Kendinle savaşmayı bırak. Dumanın seni rahatlattığı koca bir yalandı. Asıl huzur, şimdi içine çektiğin o tertemiz <span class="highlight">nefeste</span> saklı.</p>
+        </section>
+
+        <section class="step bg-4">
+            <h1>Sadece Akışına Bırak.</h1>
+            <p>Zorlamak yok. Stres yok. Sadece bu anın tadını çıkar ve kendine şefkat göster. Sen zaten <span class="highlight">çok güçlüsün</span>, şimdi daha da özgürsün.</p>
+            <button class="bloom-btn" onclick="bloom(this)">Gücüme Güveniyorum 🌿</button>
+        </section>
+
+    </div>
+
+    <canvas id="petals"></canvas>
+
+    <script>
+        // Görünürlük Kontrolü
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.step').forEach((section) => observer.observe(section));
+
+        // Çiçek Yaprağı Efekti
+        function bloom(btn) {
+            btn.innerHTML = "Seninle Gurur Duyuyorum ✨";
+            btn.style.backgroundColor = "#ffeaa7";
+            btn.style.color = "#d35400";
+            
+            const canvas = document.getElementById('petals');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const petals = [];
+            const colors = ['#ff7675', '#fd79a8', '#fab1a0', '#ffeaa7', '#81ecec'];
+
+            for(let i=0; i<100; i++) {
+                petals.push({
+                    x: canvas.width / 2,
+                    y: canvas.height / 2,
+                    vx: (Math.random() - 0.5) * 15,
+                    vy: (Math.random() - 1) * 15,
+                    rotation: Math.random() * 360,
+                    size: Math.random() * 10 + 5,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    flip: Math.random()
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0,0,canvas.width, canvas.height);
+                petals.forEach((p, index) => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.15; // Yerçekimi
+                    p.rotation += 2;
+                    
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.rotation * Math.PI / 180);
+                    ctx.fillStyle = p.color;
+                    
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, p.size, p.size/2, 0, 0, 2 * Math.PI);
+                    ctx.fill();
+                    ctx.restore();
+
+                    if(p.y > canvas.height) petals.splice(index, 1);
+                });
+                if(petals.length > 0) requestAnimationFrame(draw);
+            }
+            draw();
+        }
+    </script>
+</body>
+</html>
